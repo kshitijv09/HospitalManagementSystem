@@ -243,10 +243,12 @@ int main()
    Hospital hospital;
    Patient p;
    hospital.printHospitalDetails();
-   service.availService();
-   service.availService();
-   service.availService();
-   service.availService();
-   service.availService();
+  cout<<"Enter number of services you want to avail"<<endl;
+   int num;
+   cin>>num;
+   for(int i=1;i<=num;i++)
+   {
+      service.availService();
+   }
    return 0;
 }
