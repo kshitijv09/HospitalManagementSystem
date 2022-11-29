@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
 #include<iostream>
+#include <string>
+#include <vector>
 #define SIZE 100
 
 using namespace std;
@@ -7,7 +8,7 @@ using namespace std;
 class AmbulanceService
 {
    string address;
-    public:
+   public:
    void getAmbulance()
    {
       cout<<"Enter the Address at which you want the ambulance"<<endl;
@@ -18,7 +19,7 @@ class AmbulanceService
 
 }; 
 class Beds{
-    public:
+   public:
    int bed_price;
    int vacant_beds;
    Beds()
@@ -51,7 +52,7 @@ public:
    string name;
    string contact;
    string blood_group;
-  
+
    vector<string> enterPatientDetails()
    {
       cout<<"Enter Patient Name"<<endl;
@@ -71,6 +72,36 @@ public:
    
    
    
+};
+
+class Bill{
+   public:
+   int consultationfeecharge;
+   int hospital_care_charge;
+   int medicinecharge;
+   int totalamount;
+
+   Bill()
+   {
+      consultationfeecharge =0;
+      hospital_care_charge = 0;
+      medicinecharge = 0;
+      totalamount = 0;
+   }
+   void printReceipt(int i)
+   {
+      consultationfeecharge = (i+2)*1000;
+      hospital_care_charge = (i+2)*(i+2)*1000;
+      medicinecharge = (i+2)*(i+2)*(i+2)*1000;
+      cout << "\n BILL\n";
+      
+      cout << "Consultation Fee:     \t" << consultationfeecharge << endl;
+      cout << "Hospital Care Charge: \t" << hospital_care_charge << endl;
+      cout << "Medicines Fee:        \t" << medicinecharge << endl;
+      cout << "\nTotal:                \t" << 
+      
+   }
+
 };
 
 class Hospital{
@@ -95,6 +126,7 @@ class Hospital{
    string relievingdate;
 
    Patient p;
+   Bill b;
 
    Hospital()
    {
@@ -118,17 +150,17 @@ class Hospital{
       cout<<"Number of beds available in the hospital are"<<SIZE<<endl;
 
    }
-    void admitPatient()
+   void admitPatient()
    {
-       Beds bed;
-       Patient p1;
+      Beds bed;
+      Patient p1;
       int admission_ward;
       vector <string> patient_details;
       cout<<" Enter 1 for Emergency Admission, 2 for Non-Emergency Admission"<<endl;
       cin>>admission_ward;
 
          if(admission_ward==1)
-          bed.emergencyWard();
+         bed.emergencyWard();
          
          empty_beds=bed.occupyBed();
 
@@ -161,7 +193,7 @@ class Hospital{
    void printPatientDetails(string name)
    {
       bool found=false;
-       for(int i=0;i<SIZE;i++)
+      for(int i=0;i<SIZE;i++)
             {
                if(patient_name[i]==name)
                {
@@ -180,6 +212,23 @@ class Hospital{
    }
    void dischargePatient()
    {
+      string temp;
+      cout << "Enter patient Name\n";
+      cin>> temp;
+      int temp2;
+      for(int i=0 ; i<SIZE ; i++)
+      {
+         if(patient_name[i] == temp){temp2 = i; break;}
+      }
+
+      b.printReceipt(temp2);
+      
+      patient_name[temp2] = "";
+      patient_roomNo[temp2] = 0;
+      patient_bloodgrp[temp2] = "";
+      patient_contactno[temp2] = "";
+      patient_id[temp2] = "";
+      cout << "Patient discharged\n";
 
    }   
 };
@@ -190,13 +239,13 @@ Hospital h1;
       AmbulanceService obj2;
    AvailService()
    {
-     
+   
       //Patient p2;
       
    }
    void availService()
    {
-       
+
       
       cout<<"Enter the service you want to avail"<<endl;
       cout<<" 1: Admit a Patient"<<endl;
@@ -211,10 +260,10 @@ Hospital h1;
          case 2: h1.dischargePatient();break;
          case 3: obj2.getAmbulance();break;
          case 4: 
-              cout<<"Enter Patient Name"<<endl;
-              string name;
-              cin>>name;
-              h1.printPatientDetails(name);break;
+               cout<<"Enter Patient Name"<<endl;
+               string name;
+               cin>>name;
+               h1.printPatientDetails(name);break;
       }
 
    }
@@ -226,16 +275,7 @@ class Doctor{
 
 };
 
-class Bill{
-   int consultationfeecharge;
-   int hospital_care_charge;
-   int medicinecharge;
-   void printReceipt()
-   {
 
-   }
-
-};
 
 int main()
 {
@@ -243,7 +283,7 @@ int main()
    Hospital hospital;
    Patient p;
    hospital.printHospitalDetails();
-  cout<<"Enter number of services you want to avail"<<endl;
+   cout<<"Enter number of services you want to avail"<<endl;
    int num;
    cin>>num;
    for(int i=1;i<=num;i++)
