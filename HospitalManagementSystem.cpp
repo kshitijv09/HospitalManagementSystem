@@ -6,7 +6,7 @@
 
 #define SIZE 100
 
-using namespace std;
+using namespace std ;
 
 class AmbulanceService
 {
