@@ -1,6 +1,9 @@
 #include<iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
+
 #define SIZE 100
 
 using namespace std;
@@ -12,8 +15,8 @@ class AmbulanceService
    void getAmbulance()
    {
       cout<<"Enter the Address at which you want the ambulance"<<endl;
-   cin>>address;
-   cout<<"Sending an ambulance right away"<<endl;
+      cin>>address;
+      cout<<"Sending an ambulance right away"<<endl;
    }
    
 
@@ -93,19 +96,23 @@ class Bill{
       consultationfeecharge = (i+2)*1000;
       hospital_care_charge = (i+2)*(i+2)*1000;
       medicinecharge = (i+2)*(i+2)*(i+2)*1000;
+      totalamount = consultationfeecharge + hospital_care_charge + medicinecharge;
       cout << "\n BILL\n";
       
       cout << "Consultation Fee:     \t" << consultationfeecharge << endl;
       cout << "Hospital Care Charge: \t" << hospital_care_charge << endl;
       cout << "Medicines Fee:        \t" << medicinecharge << endl;
-      cout << "\nTotal:                \t" << 
+      cout << "\nTotal:                \t" << totalamount << endl;
       
    }
 
 };
 
+class AvailService;
+
 class Hospital{
    public: 
+   friend AvailService;
    string id;
 
    int doc_count;
@@ -139,6 +146,38 @@ class Hospital{
       contact="+91-0242-66891";
       for(int i=0;i<SIZE;i++)
          patient_roomNo[i]=0;
+   }
+   
+   void feedHospitalDetails()
+   {
+      ifstream fileName("hms.txt");
+      string eachLine;
+      string word;
+      int j=0;
+      while (getline (fileName, eachLine)) 
+      {
+         stringstream X(eachLine); 
+         
+         int turn=1;
+         while (getline(X, word, ' '))
+         {
+            switch(turn)
+            {
+               case 1:patient_name[j]=word; break;
+               case 2:patient_id[j]=word;   break;
+               case 3:patient_roomNo[j]=stoi(word);break;
+               case 4:patient_bloodgrp[j]=word; break;
+               case 5: patient_contactno[j]=word;break;
+            }
+         ++turn;  
+
+         }
+         ++j;
+         ++idcount;
+      }
+      fileName.close();
+      //idcount=patient_roomNo[j];
+      //cout<<"IDcount is"<<idcount<<endl;
    }
    
    void printHospitalDetails()
@@ -232,10 +271,10 @@ class Hospital{
 
    }   
 };
+
 class AvailService
 {
 public:
-Hospital h1;
       AmbulanceService obj2;
    AvailService()
    {
@@ -243,7 +282,7 @@ Hospital h1;
       //Patient p2;
       
    }
-   void availService()
+   void availService(Hospital &hospital)
    {
 
       
@@ -256,14 +295,14 @@ Hospital h1;
       cin>>choice;
       switch(choice)
       {
-         case 1: h1.admitPatient();break;
-         case 2: h1.dischargePatient();break;
+         case 1: hospital.admitPatient();break;
+         case 2: hospital.dischargePatient();break;
          case 3: obj2.getAmbulance();break;
          case 4: 
                cout<<"Enter Patient Name"<<endl;
                string name;
                cin>>name;
-               h1.printPatientDetails(name);break;
+               hospital.printPatientDetails(name);break;
       }
 
    }
@@ -283,12 +322,14 @@ int main()
    Hospital hospital;
    Patient p;
    hospital.printHospitalDetails();
+   hospital.feedHospitalDetails();
+   
    cout<<"Enter number of services you want to avail"<<endl;
    int num;
    cin>>num;
    for(int i=1;i<=num;i++)
    {
-      service.availService();
+      service.availService(hospital);
    }
    return 0;
 }
