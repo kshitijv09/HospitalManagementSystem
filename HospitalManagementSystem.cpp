@@ -176,8 +176,7 @@ class Hospital{
          ++idcount;
       }
       fileName.close();
-      //idcount=patient_roomNo[j];
-      //cout<<"IDcount is"<<idcount<<endl;
+      
    }
    
    void printHospitalDetails()
