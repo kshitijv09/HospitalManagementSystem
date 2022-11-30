@@ -10,6 +10,7 @@ using namespace std;
 
 class AmbulanceService
 {
+   private:
    string address;
    public:
    void getAmbulance()
@@ -21,10 +22,13 @@ class AmbulanceService
    
 
 }; 
+
 class Beds{
-   public:
+   private:
    int bed_price;
    int vacant_beds;
+
+   public:
    Beds()
    {
       vacant_beds=SIZE+1;
@@ -51,10 +55,12 @@ class Beds{
 
 
 class Patient{
-public:
+private:
    string name;
    string contact;
    string blood_group;
+
+public:
 
    vector<string> enterPatientDetails()
    {
@@ -78,12 +84,15 @@ public:
 };
 
 class Bill{
-   public:
+   private:
+
    int consultationfeecharge;
    int hospital_care_charge;
    int medicinecharge;
    int totalamount;
 
+   public:
+   
    Bill()
    {
       consultationfeecharge =0;
@@ -111,7 +120,8 @@ class Bill{
 class AvailService;
 
 class Hospital{
-   public: 
+   private: 
+
    friend AvailService;
    string id;
 
@@ -132,8 +142,11 @@ class Hospital{
 
    string relievingdate;
 
+   public:
+
    Patient p;
    Bill b;
+
 
    Hospital()
    {
@@ -219,6 +232,7 @@ class Hospital{
                   patient_contactno[i]=patient_details[1];
                   patient_bloodgrp[i]=patient_details[2];
 
+                  cout << "Patient has been admitted in room no. " << patient_roomNo[i] << endl;
                   break;
                }
             }
@@ -226,7 +240,7 @@ class Hospital{
          else{
             cout<<"No empty bed is available"<<endl;
          }
-         /* Finite beds for non-emergency admission. Hospital takes any number of patients for emergency admission */
+         /* Finite beds  for non-emergency admission. Hospital takes any number of patients for emergency admission */
    }
    void printPatientDetails(string name)
    {
@@ -274,13 +288,8 @@ class Hospital{
 class AvailService
 {
 public:
-      AmbulanceService obj2;
-   AvailService()
-   {
+   AmbulanceService obj2;
    
-      //Patient p2;
-      
-   }
    void availService(Hospital &hospital)
    {
 
@@ -308,10 +317,7 @@ public:
 };
 
 
-class Doctor{
-   string name;
 
-};
 
 
 
