@@ -150,7 +150,7 @@ class Hospital{
    
    void feedHospitalDetails()
    {
-      ifstream fileName("hms.txt");
+      ifstream fileName("/Users/rishabhlalwani/Documents/GitHub/HospitalManagementSystem/HospitalManagementSystem-1/hospitaldetails.txt");
       string eachLine;
       string word;
       int j=0;
@@ -186,7 +186,7 @@ class Hospital{
       cout<<"Contact No:  "<<contact<<endl;
       cout<<"Number of Doctors in this Hospital is: "<<doc_count<<endl;
       cout<<"Staff Count of this Hospital is : "<<staff_count<<endl;
-      cout<<"Number of beds available in the hospital are"<<SIZE<<endl;
+      cout<<"Number of beds available in the hospital are "<<SIZE<<endl;
 
    }
    void admitPatient()
