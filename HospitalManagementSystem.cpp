@@ -161,7 +161,7 @@ class Hospital{
    
    void feedHospitalDetails()
    {
-      ifstream fileName("hms.txt");
+      ifstream fileName("hospitaldetails.txt");
       string eachLine;
       string word;
       int j=0;
