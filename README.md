@@ -38,6 +38,7 @@ Program Details:
 5-  <admitPatient> function of class Patient makes use of <bedcount> function of class Bed.
 
 UML
+     
 ![UML](https://user-images.githubusercontent.com/98077136/206532717-aca1a227-c75c-4d57-bbab-03c22249a120.jpeg)
 
 
