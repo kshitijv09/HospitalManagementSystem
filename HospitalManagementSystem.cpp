@@ -19,7 +19,6 @@ class AmbulanceService
       cin>>address;
       cout<<"Sending an ambulance right away"<<endl;
    }
-   
 
 }; 
 
@@ -31,8 +30,7 @@ class Beds{
    public:
    Beds()
    {
-      vacant_beds=SIZE+1;
-      
+      vacant_beds=SIZE+1;     
    }
    int occupyBed()
    {
@@ -49,8 +47,6 @@ class Beds{
       cout<<"Patient has been admitted into the emergency ward"<<endl;
 
    }
-
-
 };
 
 
@@ -132,6 +128,7 @@ class Hospital{
    int xyz;
    string hospital_name;
    string contact;
+   string address;
 
    string patient_id[SIZE];
    string patient_name[SIZE];
@@ -159,11 +156,12 @@ class Hospital{
       contact="+91-0242-66891";
       for(int i=0;i<SIZE;i++)
          patient_roomNo[i]=0;
+      address="Apollo Hospital, Fatima Nagar, near IIIT Trichy, Trichy, TamilNadu, PIN-CODE: 620012";
    }
    
    void feedHospitalDetails()
    {
-      ifstream fileName("/Users/rishabhlalwani/Documents/GitHub/HospitalManagementSystem/HospitalManagementSystem-1/hospitaldetails.txt");
+      ifstream fileName("hms.txt");
       string eachLine;
       string word;
       int j=0;
@@ -199,6 +197,8 @@ class Hospital{
       cout<<"Number of Doctors in this Hospital is: "<<doc_count<<endl;
       cout<<"Staff Count of this Hospital is : "<<staff_count<<endl;
       cout<<"Number of beds available in the hospital are "<<SIZE<<endl;
+      cout<<"Hospital Address: "<<address<<"\n";
+      cout<<"--------------------------------------------------------------------------------------------"<<"\n";
 
    }
    void admitPatient()
@@ -254,7 +254,7 @@ class Hospital{
                   cout<<"Id: "<<patient_id[i]<<endl;
                   cout<<"RoomNo: "<<patient_roomNo[i]<<endl;
                   cout<<"ContactNo: "<<patient_contactno[i]<<endl;
-                  cout<<"BloodGrp: "<<patient_bloodgrp[i]<<endl;
+                  cout<<"BloodGrp: "<<patient_bloodgrp[i]<<"\n\n";
                   break;
                }
             }
@@ -267,20 +267,20 @@ class Hospital{
       string temp;
       cout << "Enter patient Name\n";
       cin>> temp;
-      int temp2;
+      int temp2=6;
       for(int i=0 ; i<SIZE ; i++)
       {
          if(patient_name[i] == temp){temp2 = i; break;}
       }
 
       b.printReceipt(temp2);
-      
+      cout << "Patient Name: "<<temp<<", patient_id:"<<patient_id[temp2]<<" has been discharged from Room No. "<<patient_roomNo[temp2]<<"\n\n\n";
       patient_name[temp2] = "";
       patient_roomNo[temp2] = 0;
       patient_bloodgrp[temp2] = "";
       patient_contactno[temp2] = "";
       patient_id[temp2] = "";
-      cout << "Patient discharged\n";
+      
 
    }   
 };
@@ -315,11 +315,6 @@ public:
 
    }
 };
-
-
-
-
-
 
 int main()
 {
