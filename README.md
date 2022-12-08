@@ -1,3 +1,4 @@
+![2](https://user-images.githubusercontent.com/98077136/206533707-15165d5f-adac-40e7-a8f0-641ef7c40ef4.png)
 # HospitalManagementSystem
 This Hospital Management System has following functionalities:
 1- Admits a Patient
@@ -44,7 +45,7 @@ UML
 
 Sample INPUT and OUTPUT 
 ![1](https://user-images.githubusercontent.com/98077136/206532850-75aa6960-b002-472b-9994-677ab5b28866.png)
-
+![2](https://user-images.githubusercontent.com/98077136/206533707-15165d5f-adac-40e7-a8f0-641ef7c40ef4.png)
 
 
 PROJECT MEMBERS
