@@ -1,4 +1,3 @@
-![2](https://user-images.githubusercontent.com/98077136/206533707-15165d5f-adac-40e7-a8f0-641ef7c40ef4.png)
 # HospitalManagementSystem
 This Hospital Management System has following functionalities:
 1- Admits a Patient
